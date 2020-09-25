@@ -75,7 +75,7 @@ public class CountryControllerTest {
 	public void getAllCountries() throws IOException, ParseException, Exception {
 
 		when(countryService.getAllCountries()).thenReturn(countries);
-		mockMvc.perform(get("/rest/v2/all")).andExpect(status().isOk())
+		mockMvc.perform(get("/rest/allcountries")).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print());
 		verify(countryService, times(1)).getAllCountries();
 		verifyNoMoreInteractions(countryService);
@@ -84,49 +84,49 @@ public class CountryControllerTest {
 	@Test
 	public void getAllCountriesByName() throws Exception {
 		when(countryService.getCountries("false", "Argentina")).thenReturn(countries);
-		mockMvc.perform(get("/rest/v2/name/{country}", "Argentina")).andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get("/rest/name/{country}", "Argentina")).andExpect(status().isOk()).andDo(print());
 	}
 
 	@Test
 	public void getAllCountriesByAlphaCode() throws Exception {
 		when(countryService.getCountriesByCode("co")).thenReturn(countries);
-		mockMvc.perform(get("/rest/v2/alpha/{codes}", "co")).andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get("/rest/alpha/{codes}", "co")).andExpect(status().isOk()).andDo(print());
 	}
 
 	@Test
 	public void getAllCountriesByMutipleAlphaCode() throws Exception {
 		when(countryService.getCountriesByMultipleCode("col;no;ee")).thenReturn(countries);
-		mockMvc.perform(get("/rest/v2/alpha?codes=col;no;ee")).andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get("/rest/alpha?codes=col;no;ee")).andExpect(status().isOk()).andDo(print());
 	}
 
 	@Test
 	public void getAllCountriesByCurrency() throws Exception {
 		when(countryService.getAllCountriesByCurrency("EUR")).thenReturn(countries);
-		mockMvc.perform(get("/rest/v2/currency/{currency}", "EUR")).andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get("/rest/currency/{currency}", "EUR")).andExpect(status().isOk()).andDo(print());
 	}
 
 	@Test
 	public void getAllCountriesByLanguage() throws Exception {
 		when(countryService.getAllCountriesByLanguage("es")).thenReturn(countries);
-		mockMvc.perform(get("/rest/v2/lang/{language}", "es")).andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get("/rest/lang/{language}", "es")).andExpect(status().isOk()).andDo(print());
 	}
 
 	@Test
 	public void getAllCountriesByCapital() throws Exception {
 		when(countryService.getAllCountriesByCapital("tallinn")).thenReturn(countries);
-		mockMvc.perform(get("/rest/v2/capital/{capital}", "tallinn")).andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get("/rest/capital/{capital}", "tallinn")).andExpect(status().isOk()).andDo(print());
 	}
 
 	@Test
 	public void getAllCountriesByRegion() throws Exception {
 		when(countryService.getAllCountriesByRegion("Africa")).thenReturn(countries);
-		mockMvc.perform(get("/rest/v2/region/{region}", "Africa")).andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get("/rest/region/{region}", "Africa")).andExpect(status().isOk()).andDo(print());
 	}
 
 	@Test
 	public void getAllCountriesByCallingCode() throws Exception {
 		when(countryService.getAllCountriesByCallingCode("372")).thenReturn(countries);
-		mockMvc.perform(get("/rest/v2/callingcode/{callingcode}", "372")).andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get("/rest/callingcode/{callingcode}", "372")).andExpect(status().isOk()).andDo(print());
 	}
 
 	public static String asJsonString(final Object obj) {
